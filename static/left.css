@@ -1,0 +1,97 @@
+.home{
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.link1, .link1:visited{
+    font-size: 12px;
+    color: rgb(184,63,69);
+    text-decoration: none;
+}
+.link1:hover{
+    color: rgb(111, 71, 198);
+    text-decoration: underline;
+}
+.home-left{
+    width: 280px;
+    min-width: 280px;
+    height: 420px;
+    max-height: 420px;
+    background-color: rgb(251,251,251);
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.home-left-top{
+    border-bottom: dashed rgba(0, 0, 0, 0.2);
+    padding-bottom: 18px;
+}
+.home-left-1{
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+.home-left-2{
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.home-left-middle{
+    padding: 20px 0;
+    border-bottom: dashed rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.quotobox{
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding: 8px;
+    z-index: 0;
+}
+
+.home-left-middle-1{
+    font-size: 12px;
+    font-style: italic;
+    line-height: 18px;
+}
+
+.home-left-bottom{
+    padding-top: 20px;
+}
+
+.home-left-bottom-1{
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.quote{
+    position: absolute;
+    z-index: 1;
+
+    color: rgba(0, 0, 0, 0.15);
+    font-size: 35px;
+    font-weight: 100;
+    font-family:fangsong;
+}
+
+.quote1{
+    top: 10px;
+    left:-8px;
+}
+
+.quote2{
+    bottom: 26px;
+    right: -8px;
+}
+
+.triangle{
+    position: absolute;
+    bottom: 22.5px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border: 17px solid;
+    border-color: rgba(0, 0, 0, 0.05) transparent transparent transparent;
+}
