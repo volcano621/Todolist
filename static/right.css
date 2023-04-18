@@ -1,168 +1,218 @@
-.home-right{
-   margin: 0 auto;
+.home-right {
+  margin: 0 auto;
+  padding-left: 200px;
+  width: 35%;
 }
 
-.todos{
-    font-size: 90px;
-    color: rgba(200, 12,12, 0.15);
-    display: flex;
-    justify-content: center;
-    
+.todos {
+  font-size: 90px;
+  color: rgba(200, 12, 12, 0.15);
+  display: flex;
+  justify-content: center;
 }
 
-.todobox{
-    box-shadow: 0.5px 2px 15px rgba(0,0,0,0.2);
-    position: relative;
-    background-color: white;
-
+.todobox {
+  box-shadow: 0.5px 2px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  background-color: white;
+  width: 100%;
 }
-.topbox{
-    display: flex;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    box-sizing: border-box;
-}
-
-.all{
-    width: 30px;
-    height: 25px;
-    padding: auto;
-    transform: rotate(90deg);
-    position: absolute;
-    top: 25px;
-    left: 20px;
-    font-size: 30px;
-    color: rgba(0,0,0,0.2);
-    cursor:pointer;
+.topbox {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
-.inputbox{
-    padding-left: 50px;
-    width: 400px;
-    height: 60px;
-    border: 0;
-    font-size: 25px;
-    outline: none;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    line-height: 60px;
-    position: relative;
-    transition: 0.3s ease;
-}
-.inputbox::placeholder{
-    color: rgba(0,0,0,0.1);
-    font-style: italic;
+.all {
+  width: 30px;
+  height: 25px;
+  transform: rotate(90deg);
+  position: absolute;
+  top: 25px;
+  left: 20px;
+  font-size: 30px;
+  color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  caret-color: rgba(0, 0, 0, 0);
 }
 
-input[type="checkbox"]{
-    position: absolute;
-    left: 10px;
-    top: 20px;
-    width: 20px;
-    height: 20px;
-    border-radius:50%
+#left {
+  max-height: 20px;
+  min-width: 80px;
 }
 
-input[type="checkbox"]{
-    appearance: none;
-    border-radius: 50%;
-    border: solid rgba(0,0,0,0.2);
-    margin: 0;
-    width: 27px;
-    height: 27px;
+.all_clicked {
+  color: rgba(0, 0, 0, 0.5);
 }
 
-input[type="checkbox"]:checked{
-    border: rgba(20, 145, 89, 0.3) solid;
+.inputbox {
+  padding-left: 50px;
+  width: 90%;
+  border: 0;
+  font-size: 25px;
+  outline: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  line-height: 60px;
+  position: relative;
+  transition: 0.3s ease;
+  word-wrap: break-word;
 }
 
-input[type="checkbox"]:checked::before{
-    content: "\2713";
-    color:  rgba(20, 145, 89, 0.3);
-    margin-left: 5px;
-    margin-bottom: 20px;
-    font-size: 20px;
+.input_checked {
+  text-decoration: line-through;
+  color: rgba(0, 0, 0, 0.2);
 }
 
-.del{
-    display: none;
-
-    width: 10px;
-    height: 20px;
+.inputbox::placeholder {
+  color: rgba(0, 0, 0, 0.1);
+  font-style: italic;
 }
 
-.del::before, .del::after{
-    position: absolute;
-    background-color: rgba(200,0,0);
-    content: ' ';
-    width: 3px;
-    right: 20px;
-    height: 20px;
-    top: 20px;
-}
-.del::after{
-    transform: rotate(-45deg);
-}
-.del::before{
-    transform: rotate(45deg);
+input[type="checkbox"] {
+  position: absolute;
+  left: 10px;
+  top: 20px;
+  width: 80%;
+  height: 20px;
+  border-radius: 50%;
 }
 
-.hover::after, .hover::before{
-    transition: 0.3s ease-in;
-    filter: brightness(0.8);
+input[type="checkbox"] {
+  appearance: none;
+  border-radius: 50%;
+  border: solid rgba(0, 0, 0, 0.2);
+  margin: 0;
+  width: 27px;
+  height: 27px;
 }
 
-.bottom{
-    height: 40px;
-    display: flex;
-    color: rgba(0,0,0,0.4);
-    font-size: 12px;
-    justify-content: space-between;
-    padding: 10px 10px;
-    box-sizing: border-box;
+input[type="checkbox"]:checked {
+  border: rgba(20, 145, 89, 0.3) solid;
 }
 
-.middle{
-    width: 200px;
-    height: 20px;
-    display: flex;
-    justify-content: space-around;
-    box-sizing: border-box;
+input[type="checkbox"]:checked::before {
+  content: "\2713";
+  color: rgba(20, 145, 89, 0.3);
+  margin-left: 5px;
+  margin-bottom: 20px;
+  font-size: 20px;
 }
 
-.right{
-    width: 100px;
-}
-.right:hover{
-    text-decoration: underline;
+.del {
+  display: none;
 }
 
-.middle1,.middle2,.middle3{
-    box-sizing: border-box;
-    padding: 2px;
+.del::before,
+.del::after {
+  position: absolute;
+  background-color: rgba(200, 0, 0);
+  content: " ";
+  width: 3px;
+  right: 20px;
+  height: 20px;
+  top: 20px;
+}
+.del::after {
+  transform: rotate(-45deg);
+}
+.del::before {
+  transform: rotate(45deg);
 }
 
-.middle1{
-    width: 23px;
-    height: 20px;
-    border-radius: 5px;
+.hover::after,
+.hover::before {
+  transition: 0.3s ease-in;
+  filter: brightness(0.8);
 }
 
-.middle2{
-    width: 43px;
-    height: 20px;
-    border-radius: 5px;
+.bottom {
+  height: 40px;
+  display: flex;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 12px;
+  justify-content: space-between;
+  padding: 10px 10px;
+  box-sizing: border-box;
+  border-bottom: solid rgba(0, 0, 0, 0.25);
+}
+.bottom2 {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  width: 98%;
+  max-width: 98%;
+  left: 4px;
+  height: 4px;
+  bottom: -5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  border-bottom: solid rgba(0, 0, 0, 0.25);
 }
 
-.middle3{
-    width: 70px;
-    height: 20px;
-    border-radius: 5px;
+.bottom3 {
+  position: absolute;
+  background-color: rgb(246, 246, 246);
+  width: 96%;
+  max-width: 96%;
+  left: 8px;
+  height: 4px;
+  bottom: -9px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2), 0px 8px 28px rgba(0, 0, 0, 0.5);
 }
 
-.middle1:hover,.middle2:hover,.middle3:hover{
-    border: solid rgba(200, 12,12, 0.08);   
-    
-    
+.middle {
+  width: 200px;
+  height: 20px;
+  display: flex;
+  justify-content: space-around;
+  box-sizing: border-box;
 }
 
+.right {
+  width: 100px;
+  cursor: pointer;
+}
+.right:hover {
+  text-decoration: underline;
+}
 
+.middle1,
+.middle2,
+.middle3 {
+  box-sizing: border-box;
+  padding: 2px;
+  cursor: pointer;
+  caret-color: rgba(0, 0, 0, 0);
+}
 
+.middle1 {
+  width: 23px;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.middle2 {
+  width: 43px;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.middle3 {
+  width: 70px;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.middle1:hover,
+.middle2:hover,
+.middle3:hover {
+  border: solid rgba(200, 12, 12, 0.08);
+}
+
+.middle1:focus,
+.middle2:focus,
+.middle3:focus {
+  border: solid rgba(200, 12, 12, 0.3);
+}
+
+.focused {
+  border: solid rgba(200, 12, 12, 0.3);
+}
