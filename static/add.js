@@ -32,7 +32,6 @@ function add() {
   if (first === 1) {
     addtickall();
     addBottom();
-  } else {
     mode();
   }
 
@@ -43,8 +42,10 @@ function add() {
 function Add() {
   let value = input.value;
   let added = document.createElement("div");
-  added.innerText = value;
+  let content = document.createElement("div");
+  content.innerText = value;
   added.classList.add("inputbox");
+  content.classList.add("content");
   let bottom = document.querySelector(".bottom");
   if (first == 1) {
     todobox.append(added);
@@ -62,11 +63,31 @@ function Add() {
   check.id = "checkbox";
   check.classList.add("checkbefore");
   added.appendChild(check);
+  added.appendChild(content);
   added.appendChild(del);
-
-  Check(added, check);
+  Edit(content);
+  Check(content, check, added);
   del_popup(added, del);
   Delete(added, del);
+}
+
+function Edit(content) {
+  content.addEventListener("dblclick", function () {
+    content.classList.add("input_focus");
+    content.contentEditable = true;
+    content.focus();
+    console.log("YES");
+  });
+  content.addEventListener("blur", function () {
+    content.classList.remove("input_focus");
+    content.contentEditable = false;
+  });
+  content.addEventListener("keydown", function () {
+    if (event.keyCode === 13) {
+      content.classList.remove("input_focus");
+      content.contentEditable = false;
+    }
+  });
 }
 
 function Delete(added, del) {
@@ -104,17 +125,17 @@ function del_popup(added, del) {
   };
 }
 
-function Check(added, check) {
+function Check(content, check, added) {
   let cnt = 0;
   check.addEventListener("click", function () {
     cnt++;
     if (cnt % 2) {
       check.checked = true;
-      added.classList.add("input_checked");
+      content.classList.add("input_checked");
       done.push(added);
     } else {
       check.checked = false;
-      added.classList.remove("input_checked");
+      content.classList.remove("input_checked");
       done = done.filter(function (item) {
         return item != added;
       });
@@ -126,6 +147,12 @@ function Check(added, check) {
       right_hide();
     }
     update();
+    let all = document.querySelector(".all");
+    if (done.length === allinput.length) {
+      all.classList.add("all_clicked");
+    } else {
+      all.classList.remove("all_clicked");
+    }
   });
 }
 

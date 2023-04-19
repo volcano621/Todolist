@@ -1,29 +1,29 @@
+@keyframes vanish {
+  from {
+    left: 20px;
+  }
+  to {
+    left: -300px;
+  }
+}
+
+@keyframes popup {
+  from {
+    left: -300px;
+  }
+  to {
+    left: 20px;
+  }
+}
+
 body {
-  margin: 0 auto;
   background-color: rgb(245, 245, 245);
-  /* min-width: 230px;
-  max-width: 550px; */
 }
 
 .home {
   height: 100%;
   width: 100%;
   display: flex;
-}
-
-@keyframes vanish {
-  from {
-    background-color: white;
-  }
-  to {
-    background-color: black;
-  }
-}
-
-@media (max-width: 600px) {
-  .home-left {
-    animation-name: vanish;
-  }
 }
 
 .link1,
@@ -36,9 +36,16 @@ body {
   color: rgb(111, 71, 198);
   text-decoration: underline;
 }
+
+.home-right {
+  margin: 0 auto;
+  padding-left: 200px;
+  width: 500px;
+  z-index: 1;
+}
 .home-left {
+  z-index: 0;
   position: absolute;
-  top: 20px;
   left: 20px;
   width: 280px;
   min-width: 280px;
@@ -49,8 +56,10 @@ body {
   padding: 10px;
   box-sizing: border-box;
   animation-name: none;
-  animation-duration: 3s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
+
 .home-left-top {
   border-bottom: dashed rgba(0, 0, 0, 0.2);
   padding-bottom: 18px;
@@ -122,4 +131,18 @@ body {
   height: 0;
   border: 17px solid;
   border-color: rgba(0, 0, 0, 0.05) transparent transparent transparent;
+}
+
+@media (max-width: 1000px) {
+  .home-left {
+    animation-name: vanish;
+  }
+  .home-right {
+    padding: 0;
+  }
+}
+@media (min-width: 1000px) {
+  .home-left {
+    animation-name: popup;
+  }
 }
