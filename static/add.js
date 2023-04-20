@@ -2,27 +2,47 @@ const input = document.querySelector("input");
 const todobox = document.querySelector(".todobox");
 const topbox = document.querySelector(".topbox");
 let first = 0;
-let round = 0;
 let allinput = new Array();
 let done = new Array();
 let undone = new Array();
 let tmpdone = new Array();
 let tmpundone = new Array();
 
-// let jsonn = localStorage.getItem("html");
-// let tmpdiv = document.createElement("div");
-// tmpdiv.innerHTML = JSON.parse(jsonn);
-
-// while (tmpdiv.firstChild) {
-//   todobox.appendChild(tmpdiv.firstChild);
-// }
+let jsonn = localStorage.getItem("html");
+let tmpdiv = document.createElement("div");
+tmpdiv.innerHTML = JSON.parse(jsonn);
+if (tmpdiv.innerHTML !== "") {
+  while (tmpdiv.firstChild) {
+    if (tmpdiv.firstChild.classList.contains("inputbox")) {
+      let check = tmpdiv.firstChild.firstChild;
+      let content = tmpdiv.firstChild.children[1];
+      let del = tmpdiv.firstChild.lastChild;
+      Check(content, check, tmpdiv.firstChild);
+      del_popup(tmpdiv.firstChild, del);
+      Delete(tmpdiv.firstChild, del);
+      Edit(content);
+      allinput.push(tmpdiv.firstChild);
+      if (check.checked === true) {
+        done.push(tmpdiv.firstChild);
+        console.log("YES");
+      }
+    }
+    if (tmpdiv.firstChild.classList.contains("bottom")) {
+    }
+    todobox.appendChild(tmpdiv.firstChild);
+    first++;
+  }
+  let all = document.querySelector(".all");
+  changeAll(all);
+  mode();
+}
 
 input.addEventListener("keypress", function (event) {
   if (event.keyCode === 13 && input.value !== "") {
     first++;
     add();
     update();
-    // store();
+    store();
   }
 });
 
@@ -47,7 +67,7 @@ function Add() {
   added.classList.add("inputbox");
   content.classList.add("content");
   let bottom = document.querySelector(".bottom");
-  if (first == 1) {
+  if (first === 1) {
     todobox.append(added);
   } else {
     todobox.insertBefore(added, bottom);
@@ -106,6 +126,7 @@ function Delete(added, del) {
     if (allinput.length === 0) {
       del_bottom();
     }
+    store();
   });
 
   del.addEventListener("mouseenter", function () {
@@ -153,6 +174,7 @@ function Check(content, check, added) {
     } else {
       all.classList.remove("all_clicked");
     }
+    store();
   });
 }
 
@@ -307,12 +329,12 @@ function update() {
   else left.innerText = len1 - len2 + " items left";
 }
 
-// function store() {
-//   let array = Array.from(todobox.children);
-//   let tmpparent = document.createElement("div");
-//   for (let i = 1; i < array.length; i++) {
-//     tmpparent.appendChild(array[i].cloneNode(true));
-//   }
-//   let json = JSON.stringify(tmpparent.innerHTML);
-//   localStorage.setItem("html", json);
-// }
+function store() {
+  let array = Array.from(todobox.children);
+  let tmpparent = document.createElement("div");
+  for (let i = 1; i < array.length; i++) {
+    tmpparent.appendChild(array[i].cloneNode(true));
+  }
+  let json = JSON.stringify(tmpparent.innerHTML);
+  localStorage.setItem("html", json);
+}

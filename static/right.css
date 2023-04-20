@@ -83,12 +83,7 @@ input[type="checkbox"] {
   position: absolute;
   left: 10px;
   top: 20px;
-  width: 80%;
-  height: 20px;
   border-radius: 50%;
-}
-
-input[type="checkbox"] {
   appearance: none;
   border-radius: 50%;
   border: solid rgba(0, 0, 0, 0.2);
