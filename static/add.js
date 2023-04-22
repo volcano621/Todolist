@@ -7,6 +7,7 @@ let done = new Array();
 let undone = new Array();
 let tmpdone = new Array();
 let tmpundone = new Array();
+let mod = 1;
 
 let jsonn = localStorage.getItem("html");
 let tmpdiv = document.createElement("div");
@@ -17,15 +18,15 @@ if (tmpdiv.innerHTML !== "") {
       let check = tmpdiv.firstChild.firstChild;
       let content = tmpdiv.firstChild.children[1];
       let del = tmpdiv.firstChild.lastChild;
-      Check(content, check, tmpdiv.firstChild);
       del_popup(tmpdiv.firstChild, del);
       Delete(tmpdiv.firstChild, del);
       Edit(content);
       allinput.push(tmpdiv.firstChild);
-      if (check.checked === true) {
+      if (content.classList.contains("input_checked")) {
         done.push(tmpdiv.firstChild);
-        console.log("YES");
+        check.checked = true;
       }
+      Check(content, check, tmpdiv.firstChild);
     }
     if (tmpdiv.firstChild.classList.contains("bottom")) {
     }
@@ -35,6 +36,9 @@ if (tmpdiv.innerHTML !== "") {
   let all = document.querySelector(".all");
   changeAll(all);
   mode();
+  if (done.length > 0) {
+    right_popup();
+  }
 }
 
 input.addEventListener("keypress", function (event) {
@@ -81,7 +85,6 @@ function Add() {
   del.classList.add("del");
   check.type = "checkbox";
   check.id = "checkbox";
-  check.classList.add("checkbefore");
   added.appendChild(check);
   added.appendChild(content);
   added.appendChild(del);
@@ -175,7 +178,19 @@ function Check(content, check, added) {
       all.classList.remove("all_clicked");
     }
     store();
+    upgrade(mod);
   });
+}
+
+function upgrade(mod) {
+  console.log(mod);
+  if (mod === 2) {
+    changeMode(done, undone);
+    console.log("YES");
+  }
+  if (mod === 3) {
+    changeMode(undone, done);
+  }
 }
 
 function right_popup() {
@@ -292,15 +307,18 @@ function mode() {
     });
     changeMode(undone, done);
     changeborder(middle1, middle2, middle3);
+    mod = 3;
   });
   middle2.addEventListener("click", function () {
     changeMode(done, undone);
     changeborder(middle1, middle3, middle2);
+    mod = 2;
   });
   middle1.addEventListener("click", function () {
     let empty = new Array();
     changeMode(empty, allinput);
     changeborder(middle2, middle3, middle1);
+    mod = 1;
   });
 }
 

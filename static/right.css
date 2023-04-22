@@ -223,3 +223,12 @@ input[type="checkbox"]:checked::before {
 .focused {
   border: solid rgba(200, 12, 12, 0.3);
 }
+
+.randomquote {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  color: rgba(156, 11, 11, 0.3);
+  font-style: italic;
+}
