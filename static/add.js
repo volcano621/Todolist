@@ -12,32 +12,34 @@ let mod = 1;
 let jsonn = localStorage.getItem("html");
 let tmpdiv = document.createElement("div");
 tmpdiv.innerHTML = JSON.parse(jsonn);
-if (tmpdiv.innerHTML !== "") {
-  while (tmpdiv.firstChild) {
-    if (tmpdiv.firstChild.classList.contains("inputbox")) {
-      let check = tmpdiv.firstChild.firstChild;
-      let content = tmpdiv.firstChild.children[1];
-      let del = tmpdiv.firstChild.lastChild;
-      del_popup(tmpdiv.firstChild, del);
-      Delete(tmpdiv.firstChild, del);
-      Edit(content);
-      allinput.push(tmpdiv.firstChild);
-      if (content.classList.contains("input_checked")) {
-        done.push(tmpdiv.firstChild);
-        check.checked = true;
+
+if (tmpdiv.children.length > 1) {
+  if (tmpdiv.innerHTML !== "") {
+    while (tmpdiv.firstChild) {
+      if (tmpdiv.firstChild.classList.contains("inputbox")) {
+        let check = tmpdiv.firstChild.firstChild;
+        let content = tmpdiv.firstChild.children[1];
+        let del = tmpdiv.firstChild.lastChild;
+        del_popup(tmpdiv.firstChild, del);
+        Delete(tmpdiv.firstChild, del);
+        Edit(content);
+        allinput.push(tmpdiv.firstChild);
+        if (content.classList.contains("input_checked")) {
+          done.push(tmpdiv.firstChild);
+          check.checked = true;
+        }
+        Check(content, check, tmpdiv.firstChild);
       }
-      Check(content, check, tmpdiv.firstChild);
+
+      todobox.appendChild(tmpdiv.firstChild);
+      first++;
     }
-    if (tmpdiv.firstChild.classList.contains("bottom")) {
+    let all = document.querySelector(".all");
+    changeAll(all);
+    mode();
+    if (done.length > 0) {
+      right_popup();
     }
-    todobox.appendChild(tmpdiv.firstChild);
-    first++;
-  }
-  let all = document.querySelector(".all");
-  changeAll(all);
-  mode();
-  if (done.length > 0) {
-    right_popup();
   }
 }
 
@@ -157,12 +159,18 @@ function Check(content, check, added) {
       check.checked = true;
       content.classList.add("input_checked");
       done.push(added);
+      if (mod === 2) {
+        todobox.removeChild(added);
+      }
     } else {
       check.checked = false;
       content.classList.remove("input_checked");
       done = done.filter(function (item) {
         return item != added;
       });
+      if (mod === 3) {
+        todobox.removeChild(added);
+      }
     }
 
     if (done.length > 0) {
@@ -178,19 +186,7 @@ function Check(content, check, added) {
       all.classList.remove("all_clicked");
     }
     store();
-    upgrade(mod);
   });
-}
-
-function upgrade(mod) {
-  console.log(mod);
-  if (mod === 2) {
-    changeMode(done, undone);
-    console.log("YES");
-  }
-  if (mod === 3) {
-    changeMode(undone, done);
-  }
 }
 
 function right_popup() {
@@ -207,6 +203,7 @@ function right_popup() {
     if (allinput.length === 0) {
       del_bottom();
     }
+    store();
   });
 }
 
