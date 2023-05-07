@@ -256,42 +256,21 @@ function changeAll(all) {
 }
 
 function addBottom() {
-  let bottom = document.createElement("div");
-  let bottom2 = document.createElement("div");
-  let bottom3 = document.createElement("div");
-  let left = document.createElement("div");
-  let right = document.createElement("div");
-  let middle = document.createElement("div");
-  let middle1 = document.createElement("div");
-  let middle2 = document.createElement("div");
-  let middle3 = document.createElement("div");
-
-  middle1.innerText = "All";
-  middle2.innerText = "Active";
-  middle3.innerText = "Completed";
-  left.textContent = "1 item left";
-
-  bottom.classList.add("bottom");
-  left.id = "left";
-  bottom2.classList.add("bottom2");
-  bottom3.classList.add("bottom3");
-  middle.classList.add("middle");
-  right.classList.add("right");
-  middle1.classList.add("middle1");
-  middle1.classList.add("focused");
-  middle2.classList.add("middle2");
-  middle3.classList.add("middle3");
-
-  bottom.appendChild(left);
-  bottom.appendChild(middle);
-  middle.appendChild(middle1);
-  middle.appendChild(middle2);
-  middle.appendChild(middle3);
-  bottom.appendChild(right);
-
-  todobox.appendChild(bottom);
-  todobox.appendChild(bottom2);
-  todobox.appendChild(bottom3);
+  let bottom = `
+        <div id="left">1 item left</div>
+        <div class="middle">
+            <div class="middle1 focused">All</div>
+            <div class="middle2">Active</div>
+            <div class="middle3">Completed</div>
+        </div>
+        <div class="right"></div>
+    <div class="bottom2"></div>
+    <div class="bottom3"></div>
+  `;
+  let div = document.createElement("div");
+  div.classList.add("bottom");
+  div.innerHTML = bottom;
+  todobox.appendChild(div);
 }
 
 function mode() {
